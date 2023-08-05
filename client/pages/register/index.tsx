@@ -1,14 +1,14 @@
 import Modal from 'react-modal'
 import Crud from './../../components/Crud'
 import { useContext } from 'react'
-import { MyContext } from '../MyContext'
+import { MyContext } from '../../context/MyContext'
 
 Modal.setAppElement('#__next')
 
 const RegisterUser = () => {
   const context: any = useContext(MyContext)
 
-  const { handleOpenModal, isOpen, setIsOpen } = context
+  const { handleOpenModal } = context
 
   if (!context) return null
 
@@ -21,7 +21,7 @@ const RegisterUser = () => {
         Register new user
       </button>
 
-      <Crud isOpen={isOpen} setIsOpen={setIsOpen} />
+      <Crud />
     </main>
   )
 }
