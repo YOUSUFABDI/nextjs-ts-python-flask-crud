@@ -130,3 +130,41 @@ def update_user(user_id):
 
     except Exception as e:
         return jsonify({"Error": str(e), "status code": 500})
+
+# Search user
+@app.route('/api/v1/search-user/<int:user_id>', methods=['GET'])
+def search_user(user_id):
+    try:
+        # Connect to DB
+        db = mysql.connector.connect(
+            host=host, user=db_username, password=db_password, database=db_name
+        )
+
+        # Create cursor
+        cursor = db.cursor()
+
+        # Create query
+        query = "SELECT * from users where id = %s"
+
+        # Execute the query
+        cursor.execute(query, (user_id,))
+
+        # Fetch user data
+        user_data = cursor.fetchone()
+
+        
+        user = {
+            "id": user_data[0],
+            "name": user_data[1],
+            "phone": user_data[2],
+            "gmail": user_data[3]
+        }
+
+        db.commit()
+        cursor.close()
+
+        # Return json respone
+        return jsonify({"user": user})
+    
+    except Exception as e:
+        return jsonify({"message": "An error occurred", "error": str(e)}), 500
