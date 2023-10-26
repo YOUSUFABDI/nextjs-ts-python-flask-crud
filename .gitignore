@@ -1,6 +1,8 @@
 # server
 /server/app/__pycache__/
 /server/venv/
+/server/requirements.txt/
+/server/Procfile/
 .env
 
 # client
