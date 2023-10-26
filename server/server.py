@@ -8,5 +8,5 @@ load_dotenv()
 port = os.getenv("PORT")
 
 if __name__ == "__main__":
-    app.run(debug=True, port=port) 
+    app.run(debug=True, port=port)  
  
